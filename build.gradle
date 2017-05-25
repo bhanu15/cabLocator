@@ -1,0 +1,56 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+        mavenLocal()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE'
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+apply plugin: 'jacoco'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+    mavenLocal()
+}
+
+dependencies {
+	compile 'org.springframework.boot:spring-boot-starter-actuator'
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile 'net.sf.opencsv:opencsv:2.3'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.hamcrest:hamcrest-all:1.3'
+    testCompile 'org.cassandraunit:cassandra-unit:3.0.0.1'
+    testCompile 'org.springframework:spring-test:4.2.3.RELEASE'  
+    testCompile 'org.mockito:mockito-core:1.10.19'     
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.6'
+}
+
+group   =  'cab.locator'
+version =  '1.0.0'
+
+jar {
+    baseName = 'cab-locator'
+}
+
+configurations {
+	runtime.exclude group: "org.slf4j", module: "slf4j-log4j12"
+}
