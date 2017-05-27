@@ -26,6 +26,7 @@ public class CabController {
 		return response;
 	}
 	
+	// this API will give the cab id when user request for cab service
 	@ResponseBody
 	@RequestMapping(value = "{cabId}/near", method = RequestMethod.GET)
 	ResponseEntity<List<String>> getNear(@PathVariable("cabId") String cabId){
